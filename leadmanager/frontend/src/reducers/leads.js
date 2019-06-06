@@ -1,4 +1,4 @@
-import { GET_LEADS } from "../action/types.js";
+import { GET_LEADS, DELETE_LEAD } from "../actions/types.js";
 import { defaultCipherList } from "constants";
 
 const initialState = {
@@ -13,7 +13,12 @@ export default function(state = initialState, action) {
         ...state,
         leads: action.payload
       };
+    case DELETE_LEAD:
+      return {
+        ...state,
+        leads: state.leads.filter(lead => lead.id !== action.payload)
+      };
     default:
-      return State;
+      return state;
   }
 }
